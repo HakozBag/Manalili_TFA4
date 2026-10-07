@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\UserModel;
 
 class Users extends BaseController
@@ -8,13 +9,12 @@ class Users extends BaseController
     public function index()
     {
         $userModel = new UserModel();
-        $users = $userModel->findAll();
 
         return view('users', [
-            'users' => $users
+            'users' => $userModel->findAll(),
         ]);
     }
-    
+
     public function new()
     {
         return view('users/new');
@@ -25,6 +25,7 @@ class Users extends BaseController
         $rules = [
             'username'  => 'required|min_length[3]|max_length[50]|alpha_numeric_space|is_unique[users.username]',
             'full_name' => 'required|min_length[2]|max_length[100]',
+            'password'  => 'required|min_length[8]',
         ];
 
         if (! $this->validate($rules)) {
@@ -38,6 +39,10 @@ class Users extends BaseController
         $userModel->insert([
             'username'  => $this->request->getPost('username'),
             'full_name' => $this->request->getPost('full_name'),
+            'password'  => password_hash(
+                $this->request->getPost('password'),
+                PASSWORD_DEFAULT
+            ),
         ]);
 
         return redirect()->to(site_url('users'));
@@ -46,7 +51,6 @@ class Users extends BaseController
     public function edit($id)
     {
         $userModel = new UserModel();
-
         $user = $userModel->find($id);
 
         if (! $user) {
@@ -56,14 +60,13 @@ class Users extends BaseController
         }
 
         return view('users/edit', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
     public function update($id)
     {
         $userModel = new UserModel();
-
         $user = $userModel->find($id);
 
         if (! $user) {

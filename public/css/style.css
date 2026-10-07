@@ -226,3 +226,36 @@ tr:hover {
     text-align: center;
     font-weight: bold;
 }
+
+.logout-form {
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px 0;
+}
+
+.logout-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #b8326e;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #922752;
+}
+
+.account-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.account-actions .add-button,
+.account-actions .logout-form {
+    margin: 0;
+}

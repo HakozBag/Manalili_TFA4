@@ -19,9 +19,16 @@
         <a href="<?= site_url('users') ?>">User Accounts</a>
     </nav>
 
+   <div class="account-actions">
     <a class="add-button" href="<?= site_url('users/new') ?>">
         Add New User
     </a>
+
+    <form class="logout-form" action="<?= site_url('logout') ?>" method="post">
+        <?= csrf_field() ?>
+        <button class="logout-button" type="submit">Log Out</button>
+    </form>
+    </div>
 
     <hr>
 

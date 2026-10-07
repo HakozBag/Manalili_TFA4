@@ -29,14 +29,35 @@
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" 
-                       value="<?= esc(old('username')) ?>">
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value="<?= esc(old('username')) ?>"
+                    required
+                >
             </div>
 
             <div class="form-group">
                 <label for="full_name">Full Name</label>
-                <input type="text" id="full_name" name="full_name" 
-                       value="<?= esc(old('full_name')) ?>">
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    value="<?= esc(old('full_name')) ?>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    minlength="8"
+                    required
+                >
             </div>
 
             <button type="submit">Add User</button>
